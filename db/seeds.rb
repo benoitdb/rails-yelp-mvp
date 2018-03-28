@@ -11,21 +11,20 @@ Restaurant.destroy_all
 
 puts 'Creating restaurants...'
 5.times do
-Restaurant.create!(
+restaurant = Restaurant.create!(
   name: Faker::Hipster.sentence(3),
   address: ['Nantes', 'Paris', 'London', 'Seattle', 'Brussels'].sample,
   phone_number: Faker::PhoneNumber.phone_number,
   category: ['chinese', 'italian', 'japanese', 'french', 'belgian'].sample
 )
-end
 
-puts 'Creating reviews...'
-10.times do
-Review.create!(
-  restaurant_id: [0, 1, 2, 3, 4, 5].sample,
-  content: Faker::Hipster.sentence(4),
-  rating: [0, 1, 2, 3, 4, 5].sample,
-)
+  10.times do
+  Review.create!(
+    restaurant_id: restaurant.id,
+    content: Faker::Hipster.sentence(4),
+    rating: [0, 1, 2, 3, 4, 5].sample,
+  )
+  end
 end
 
 puts 'Finished!'
